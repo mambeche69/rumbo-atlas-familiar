@@ -1,0 +1,7 @@
+# Paquetes temporales de publicación
+rumbo-site-*.tar.gz
+rumbo-site.tar.gz
+source-assets/
+
+# Archivos del sistema
+.DS_Store
