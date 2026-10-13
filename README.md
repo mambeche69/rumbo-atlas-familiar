@@ -27,7 +27,6 @@ Aplicación web estática construida con HTML, CSS y JavaScript generados median
 
 - `dist/`: aplicación lista para desplegar.
 - `dist/assets/`: imágenes ficticias de demostración.
-- `source-assets/`: recursos originales utilizados durante la creación.
 
 ## Ejecución local
 
