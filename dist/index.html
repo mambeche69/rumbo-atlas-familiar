@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rumbo reúne recuerdos de viaje dispersos y los convierte en historias familiares fáciles de encontrar y compartir." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#173b39" />
+    <title>Rumbo — El atlas de nuestra familia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <section class="gate" id="gate" aria-labelledby="gate-title">
+      <div class="gate-visual" aria-hidden="true">
+        <img src="./assets/barcelona.jpg" alt="" />
+        <div class="gate-stamp">DEMO · 2026</div>
+      </div>
+      <div class="gate-panel">
+        <div class="brand brand-dark"><span class="brand-mark">R</span><span>rumbo</span></div>
+        <p class="eyebrow" data-i18n="gateEyebrow">ATLAS FAMILIAR · DEMOSTRACIÓN</p>
+        <h1 id="gate-title" data-i18n="gateTitle">Los recuerdos merecen un lugar al que volver.</h1>
+        <p class="gate-copy" data-i18n="gateCopy">Introduce el código de demostración para recorrer una familia y unos viajes completamente ficticios.</p>
+        <form id="gate-form" novalidate>
+          <label for="access-code" data-i18n="codeLabel">Código de acceso</label>
+          <div class="code-row">
+            <input id="access-code" name="code" autocomplete="off" inputmode="text" placeholder="VIAJE" maxlength="12" required />
+            <button class="button button-primary" type="submit" data-i18n="enter">Entrar</button>
+          </div>
+          <p class="helper"><span data-i18n="demoCode">Código de prueba:</span> <button type="button" class="text-button" id="fill-code">VIAJE</button></p>
+          <p class="error" id="gate-error" role="alert"></p>
+        </form>
+        <div class="language-switch gate-language" aria-label="Idioma">
+          <button class="language active" data-lang="es" type="button">ES</button>
+          <button class="language" data-lang="fr" type="button">FR</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="app" hidden>
+      <header class="site-header">
+        <a class="brand" href="#inicio" aria-label="Rumbo, inicio"><span class="brand-mark">R</span><span>rumbo</span></a>
+        <nav aria-label="Principal">
+          <a href="#atlas" data-i18n="navAtlas">Atlas</a>
+          <a href="#aportes" data-i18n="navContributions">Aportes</a>
+          <a href="#recuerdos" data-i18n="navMemories">Recuerdos</a>
+          <a href="#capsula" data-i18n="navCapsule">Cápsula</a>
+        </nav>
+        <div class="header-actions">
+          <div class="language-switch compact" aria-label="Idioma">
+            <button class="language active" data-lang="es" type="button">ES</button>
+            <button class="language" data-lang="fr" type="button">FR</button>
+          </div>
+          <button class="icon-button" id="lock-button" type="button" aria-label="Cerrar sesión" title="Cerrar sesión">↗</button>
+        </div>
+      </header>
+
+      <main id="main">
+        <section class="hero" id="inicio">
+          <div class="hero-copy">
+            <p class="eyebrow light" data-i18n="heroEyebrow">UN HOGAR PARA CADA AVENTURA</p>
+            <h1 data-i18n="heroTitle">Nuestra historia también se mide en lugares.</h1>
+            <p data-i18n="heroCopy">Rumbo reúne fotos dispersas, las ordena por viaje y las convierte en pequeñas historias que la familia puede revivir desde cualquier país.</p>
+            <div class="hero-actions">
+              <a class="button button-coral" href="#atlas" data-i18n="explore">Explorar el atlas</a>
+              <a class="button button-ghost" href="#capsula" data-i18n="createCapsule">Crear una cápsula</a>
+            </div>
+            <div class="hero-stats" aria-label="Resumen del álbum">
+              <div><strong>4</strong><span data-i18n="trips">viajes</span></div>
+              <div><strong id="hero-memory-count">12</strong><span data-i18n="memories">recuerdos</span></div>
+              <div><strong>3</strong><span data-i18n="continents">continentes</span></div>
+            </div>
+          </div>
+          <div class="hero-art" aria-label="Mosaico de recuerdos ficticios">
+            <figure class="photo photo-main"><img src="./assets/costa-rica.jpg" alt="Familia ficticia cruzando un puente en un bosque tropical" /></figure>
+            <figure class="photo photo-small"><img src="./assets/quebec.jpg" alt="Familia ficticia caminando por un bosque nevado" /></figure>
+            <div class="postcard"><span>03.2025</span><strong>PURA VIDA</strong><small>un recuerdo para volver</small></div>
+          </div>
+        </section>
+
+        <section class="section atlas-section" id="atlas">
+          <div class="section-heading split">
+            <div><p class="eyebrow" data-i18n="atlasEyebrow">EL MAPA DE LOS RECUERDOS</p><h2 data-i18n="atlasTitle">Cuatro viajes, una historia compartida.</h2></div>
+            <p data-i18n="atlasCopy">Selecciona un punto para descubrir el viaje y saltar directamente a sus recuerdos.</p>
+          </div>
+          <div class="atlas-card">
+            <div class="globe-stage" role="group" aria-labelledby="globe-title globe-help">
+              <div class="globe-heading"><span id="globe-title" data-i18n="globeTitle">Globo de recuerdos</span><small id="globe-help" data-i18n="globeHelp">Arrastra para girar · pulsa un destino</small></div>
+              <canvas id="travel-globe" aria-label="Globo terráqueo interactivo con cuatro destinos" tabindex="0"></canvas>
+              <div class="globe-destinations" aria-label="Seleccionar destino">
+                <button class="globe-destination" data-trip="quebec" type="button"><i style="--pin:#4f89a7"></i>Québec</button>
+                <button class="globe-destination" data-trip="costa-rica" type="button"><i style="--pin:#4f8a66"></i>Costa Rica</button>
+                <button class="globe-destination" data-trip="barcelona" type="button"><i style="--pin:#e76f51"></i>Barcelona</button>
+                <button class="globe-destination" data-trip="kyoto" type="button"><i style="--pin:#d9768b"></i>Kyoto</button>
+              </div>
+            </div>
+            <aside class="atlas-detail" id="atlas-detail" aria-live="polite"></aside>
+          </div>
+        </section>
+
+        <section class="section contributions-section" id="aportes">
+          <div class="contributions-copy">
+            <p class="eyebrow" data-i18n="contribEyebrow">UNA SOLA BANDEJA PARA TODA LA FAMILIA</p>
+            <h2 data-i18n="contribTitle">Cada teléfono guarda una parte del viaje.</h2>
+            <p data-i18n="contribCopy">Los familiares envían sus fotos a una bandeja común. Quien organiza el álbum revisa cada aporte, lo asigna al viaje correcto y lo publica sin perseguir archivos por varios chats.</p>
+            <div class="problem-flow" aria-label="Flujo del problema a la solución">
+              <div><span>01</span><b data-i18n="flowSend">La familia aporta</b><small data-i18n="flowSendCopy">desde distintos teléfonos</small></div>
+              <i>→</i>
+              <div><span>02</span><b data-i18n="flowReview">Se revisa</b><small data-i18n="flowReviewCopy">antes de publicar</small></div>
+              <i>→</i>
+              <div><span>03</span><b data-i18n="flowAlbum">El álbum crece</b><small data-i18n="flowAlbumCopy">ordenado y compartible</small></div>
+            </div>
+          </div>
+          <div class="inbox-card">
+            <div class="inbox-top">
+              <div><small data-i18n="sharedInbox">BANDEJA COMPARTIDA</small><h3><span id="pending-count">3</span> <span data-i18n="pending">aportes pendientes</span></h3></div>
+              <span class="live-dot"><i></i><span data-i18n="demo">Demo</span></span>
+            </div>
+            <div class="contribution-list" id="contribution-list"></div>
+            <div class="inbox-footer"><span><b id="accepted-count">0</b> <span data-i18n="integrated">integrados en el álbum</span></span><button class="text-button" id="reset-contributions" type="button" data-i18n="resetDemo">Reiniciar demo</button></div>
+          </div>
+        </section>
+
+        <section class="section memories-section" id="recuerdos">
+          <div class="section-heading split">
+            <div><p class="eyebrow" data-i18n="memoriesEyebrow">BUSCAR · RECORDAR · COMPARTIR</p><h2 data-i18n="memoriesTitle">Encuentra un momento, no una carpeta.</h2></div>
+            <p data-i18n="memoriesCopy">Filtra por destino o escribe una palabra. Marca tus favoritos para crear una cápsula familiar.</p>
+          </div>
+          <div class="toolbar">
+            <label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only" data-i18n="searchLabel">Buscar recuerdos</span><input id="search" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="Buscar: nieve, puente, primavera…" /></label>
+            <div class="filter-group" id="filters" aria-label="Filtrar por viaje"></div>
+            <button class="button button-ink favorites-shortcut" id="favorites-shortcut" type="button"><span>♥</span> <span data-i18n="favorites">Favoritos</span> <b id="favorite-count">0</b></button>
+          </div>
+          <div class="results-line"><span id="result-count">12</span> <span data-i18n="results">recuerdos encontrados</span></div>
+          <div class="memory-grid" id="memory-grid"></div>
+          <div class="empty-state" id="empty-state" hidden><span>⌕</span><h3 data-i18n="emptyTitle">Ese recuerdo todavía no aparece.</h3><p data-i18n="emptyCopy">Prueba otra palabra o elimina los filtros.</p></div>
+        </section>
+
+        <section class="capsule-section" id="capsula">
+          <div class="capsule-intro">
+            <p class="eyebrow light" data-i18n="capsuleEyebrow">LA FUNCIÓN QUE ACERCA A LA FAMILIA</p>
+            <h2 data-i18n="capsuleTitle">Crea una cápsula para alguien que está lejos.</h2>
+            <p data-i18n="capsuleCopy">Elige hasta seis recuerdos, escribe una dedicatoria y genera un enlace ligero. Quien lo reciba verá una historia breve, sin buscar entre cientos de archivos.</p>
+            <ol>
+              <li><span>1</span><span data-i18n="stepOne">Marca recuerdos con el corazón.</span></li>
+              <li><span>2</span><span data-i18n="stepTwo">Añade un mensaje personal.</span></li>
+              <li><span>3</span><span data-i18n="stepThree">Genera y copia el enlace.</span></li>
+            </ol>
+          </div>
+          <div class="capsule-builder">
+            <div class="builder-top"><div><small data-i18n="yourSelection">TU SELECCIÓN</small><h3><span id="capsule-count">0</span>/6 <span data-i18n="selected">recuerdos</span></h3></div><button class="text-button" id="clear-favorites" type="button" data-i18n="clear">Vaciar</button></div>
+            <div class="capsule-strip" id="capsule-strip"><p data-i18n="selectionEmpty">Todavía no has marcado recuerdos.</p></div>
+            <label for="capsule-message" data-i18n="messageLabel">Dedicatoria</label>
+            <textarea id="capsule-message" maxlength="160" data-i18n-placeholder="messagePlaceholder" placeholder="Abuela, escogimos estos momentos para que viajes con nosotros…"></textarea>
+            <div class="builder-footer"><span><b id="message-count">0</b>/160</span><button class="button button-coral" id="create-capsule" type="button" data-i18n="generateLink">Generar enlace</button></div>
+            <div class="share-result" id="share-result" hidden><label for="share-url" data-i18n="shareReady">Enlace listo para compartir</label><div><input id="share-url" readonly /><button class="button button-ink" id="copy-link" type="button" data-i18n="copy">Copiar</button></div><button class="text-button" id="preview-capsule" type="button" data-i18n="preview">Ver la cápsula</button></div>
+          </div>
+        </section>
+      </main>
+
+      <footer><div class="brand"><span class="brand-mark">R</span><span>rumbo</span></div><p data-i18n="footer">Prototipo de competencia · Todos los nombres, imágenes y datos son ficticios.</p><a href="#inicio" data-i18n="backTop">Volver arriba ↑</a></footer>
+    </div>
+
+    <dialog class="modal" id="memory-modal"><button class="modal-close" data-close type="button" aria-label="Cerrar">×</button><div id="modal-content"></div></dialog>
+    <dialog class="modal capsule-modal" id="capsule-modal"><button class="modal-close" data-close type="button" aria-label="Cerrar">×</button><div id="capsule-preview-content"></div></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
