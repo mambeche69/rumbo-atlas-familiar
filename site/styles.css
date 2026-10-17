@@ -121,14 +121,14 @@ a { color: inherit; }
 .atlas-detail a { color: var(--sun); font-weight: 700; font-size: .85rem; }
 
 .photobook { min-height: 100vh; color: var(--ink); background: var(--paper); }
-.photobook-cover { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(340px, .65fr); color: white; background: var(--ink); }
-.photobook-cover > img { height: 100vh; object-fit: cover; }
-.photobook-cover-copy { min-height: 100vh; padding: clamp(2rem, 5vw, 5rem); display: flex; flex-direction: column; justify-content: space-between; }
+.photobook-cover { min-height: 100vh; display: grid; grid-template-columns: 1fr; color: white; background: var(--ink); }
+.photobook-cover > img { height: 58vh; object-fit: cover; }
+.photobook-cover-copy { min-height: 42vh; padding: clamp(2rem, 5vw, 5rem); display: flex; flex-direction: column; justify-content: space-between; }
 .photobook-brand { display: inline-flex; align-items: center; gap: .65rem; width: fit-content; color: white; text-decoration: none; font-size: 1.12rem; font-weight: 700; }
 .photobook-cover-copy small, .photobook-end small { color: #9fbbb5; text-transform: uppercase; letter-spacing: .13em; }
 .photobook-kicker { margin: 1.2rem 0 0; color: var(--sun) !important; font-size: .68rem !important; font-weight: 800; letter-spacing: .15em; }
-.photobook-cover h1 { margin: .35rem 0 1.2rem; font-family: var(--serif); font-size: clamp(4rem, 8vw, 8rem); font-weight: 500; line-height: .86; letter-spacing: -.05em; }
-.photobook-cover-copy > div > p:not(.photobook-kicker) { max-width: 460px; color: #c6d8d4; font-size: 1rem; line-height: 1.65; }
+.photobook-cover h1 { margin: .35rem 0 1.2rem; font-family: var(--serif); font-size: clamp(4rem, 8vw, 8rem); font-weight: 500; line-height: .9; letter-spacing: -.05em; overflow-wrap: anywhere; }
+.photobook-cover-copy > div > p:not(.photobook-kicker) { max-width: 720px; color: #c6d8d4; font-size: 1rem; line-height: 1.65; }
 .photobook-count { display: inline-block; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.18); color: #dce9e6; font-size: .76rem; }
 .photobook-pages { padding: clamp(4rem, 9vw, 9rem) clamp(1.2rem, 7vw, 7rem); display: grid; gap: clamp(5rem, 12vw, 12rem); }
 .photobook-spread { margin: 0; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); align-items: center; gap: clamp(2rem, 7vw, 7rem); }
