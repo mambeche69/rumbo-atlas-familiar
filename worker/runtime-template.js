@@ -9,7 +9,14 @@ const json = (data, status=200) => new Response(JSON.stringify(data), {
 
 const clean = (value, max) => String(value || '').trim().replace(/[<>]/g, '').slice(0, max);
 const allowedTrips = new Set(['barcelona','quebec','costa-rica','kyoto']);
-const allowedTypes = new Set(['image/jpeg','image/png','image/webp']);
+const allowedTypes = new Set(['image/jpeg','image/png','image/webp','image/heic','image/heif']);
+const photoType = photo => {
+  const declared = String(photo.type || '').toLowerCase();
+  if (allowedTypes.has(declared)) return declared;
+  if (/\.heic$/i.test(photo.name || '')) return 'image/heic';
+  if (/\.heif$/i.test(photo.name || '')) return 'image/heif';
+  return '';
+};
 
 function authorized(request, env) {
   const supplied = request.headers.get('x-rumbo-code')?.trim();
@@ -60,11 +67,12 @@ async function handleApi(request, env, url) {
     const photo = form.get('photo');
     const consent = form.get('consent');
     if (!author || !caption || !allowedTrips.has(tripId) || !consent) return json({error:'Missing fields.'}, 400);
-    if (!(photo instanceof File) || !allowedTypes.has(photo.type) || photo.size < 1 || photo.size > 5 * 1024 * 1024) return json({error:'Invalid photo.'}, 400);
+    const contentType = photo instanceof File ? photoType(photo) : '';
+    if (!(photo instanceof File) || !contentType || photo.size < 1 || photo.size > 5 * 1024 * 1024) return json({error:'Invalid photo.'}, 400);
     const id = crypto.randomUUID();
     const createdAt = new Date().toISOString();
     const record = {id, author, tripId, caption, status:'pending', createdAt};
-    await env.BUCKET.put(`images/${id}`, photo.stream(), {httpMetadata:{contentType:photo.type}, customMetadata:{originalName:clean(photo.name, 100)}});
+    await env.BUCKET.put(`images/${id}`, photo.stream(), {httpMetadata:{contentType}, customMetadata:{originalName:clean(photo.name, 100)}});
     await env.BUCKET.put(`contributions/${id}.json`, JSON.stringify(record), {httpMetadata:{contentType:'application/json'}});
     return json({...record, imageUrl:`/api/media/${id}`}, 201);
   }
@@ -119,7 +127,7 @@ export default {
     if (url.pathname === '/app.js') return new Response(SCRIPT, {headers:{'content-type':'text/javascript; charset=utf-8','cache-control':'no-cache'}});
     if (url.pathname.startsWith('/assets/')) {
       const name = url.pathname.slice('/assets/'.length);
-      if (!/^[a-z0-9-]+\.jpg$/i.test(name)) return new Response('Not found', {status:404});
+      if (!/^[a-z0-9-]+\.(?:jpg|png)$/i.test(name)) return new Response('Not found', {status:404});
       return Response.redirect(`https://raw.githubusercontent.com/mambeche69/rumbo-atlas-familiar/main/dist/assets/${name}`, 302);
     }
     if (url.pathname === '/robots.txt') return new Response('User-agent: *\nDisallow: /\n', {headers:{'content-type':'text/plain; charset=utf-8'}});

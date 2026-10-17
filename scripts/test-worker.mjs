@@ -24,8 +24,8 @@ class MemoryBucket {
 }
 
 const bucket = new MemoryBucket();
-const TEST_ADMIN_CODE = 'ADMIN_TEST';
-const env = {BUCKET:bucket, ADMIN_CODE:TEST_ADMIN_CODE};
+const testAdminCode = 'TEST-ORGANIZER-CODE';
+const env = {BUCKET:bucket, ADMIN_CODE:testAdminCode};
 const call = (path, init={}) => worker.fetch(new Request(`https://rumbo.test${path}`, init), env);
 
 const page = await call('/');
@@ -46,16 +46,28 @@ assert.equal(created.status, 201);
 const record = await created.json();
 
 assert.equal((await call('/api/contributions?status=all')).status, 401);
-const pending = await call('/api/contributions?status=all', {headers:{'x-rumbo-code':TEST_ADMIN_CODE}});
+const pending = await call('/api/contributions?status=all', {headers:{'x-rumbo-code':testAdminCode}});
 assert.equal((await pending.json()).contributions.length, 1);
 
-const reviewed = await call(`/api/contributions/${record.id}`, {method:'PATCH', headers:{'content-type':'application/json','x-rumbo-code':TEST_ADMIN_CODE}, body:JSON.stringify({status:'accepted'})});
+const reviewed = await call(`/api/contributions/${record.id}`, {method:'PATCH', headers:{'content-type':'application/json','x-rumbo-code':testAdminCode}, body:JSON.stringify({status:'accepted'})});
 assert.equal(reviewed.status, 200);
 const accepted = await call('/api/contributions?status=accepted');
 assert.equal((await accepted.json()).contributions[0].status, 'accepted');
 assert.equal((await call(`/api/media/${record.id}`)).status, 200);
-const removed = await call(`/api/contributions/${record.id}`, {method:'DELETE', headers:{'x-rumbo-code':TEST_ADMIN_CODE}});
+const removed = await call(`/api/contributions/${record.id}`, {method:'DELETE', headers:{'x-rumbo-code':testAdminCode}});
 assert.equal(removed.status, 204);
 assert.equal((await call('/api/contributions?status=accepted').then(response=>response.json())).contributions.length, 0);
 
-console.log('Worker flow passed: upload, protected review, acceptance, public memory and media.');
+const heifForm = new FormData();
+heifForm.set('author', 'Viajera Demo');
+heifForm.set('tripId', 'kyoto');
+heifForm.set('caption', 'Una imagen HEIF para comprobar el formato.');
+heifForm.set('consent', 'on');
+heifForm.set('photo', new File([new Uint8Array([0,0,0,24,102,116,121,112])], 'demo.heif', {type:'image/heif'}));
+const heifCreated = await call('/api/contributions', {method:'POST', body:heifForm});
+assert.equal(heifCreated.status, 201);
+const heifRecord = await heifCreated.json();
+assert.equal((await call(`/api/media/${heifRecord.id}`)).headers.get('content-type'), 'image/heif');
+assert.equal((await call(`/api/contributions/${heifRecord.id}`, {method:'DELETE', headers:{'x-rumbo-code':testAdminCode}})).status, 204);
+
+console.log('Worker flow passed: JPG and HEIF upload, protected review, acceptance, public memory and media.');

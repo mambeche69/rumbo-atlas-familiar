@@ -56,6 +56,50 @@ Object.assign(ui.es, { awaitingReview:"Pendiente", organizerMode:"Modo organizad
 Object.assign(ui.fr, { awaitingReview:"En attente", organizerMode:"Mode organisateur", organizerActive:"Organisateur actif", exitOrganizer:"Quitter le mode organisateur", organizerCode:"Code de l'organisateur", openInbox:"Ouvrir la boîte", wrongOrganizer:"Le code de l'organisateur ne correspond pas." });
 Object.assign(ui.es, { photobook:"PHOTOBOOK DEL VIAJE", bookMemories:"recuerdos de este viaje", backAtlas:"Volver al atlas", bookEnd:"Fin de este viaje", memoriesCopy:"Escribe algo que recuerdes de la imagen —como atardecer, palmeras o cascada— o filtra por destino.", searchPlaceholder:"Buscar: atardecer, palmeras, nieve, cascada…" });
 Object.assign(ui.fr, { photobook:"ALBUM DU VOYAGE", bookMemories:"souvenirs de ce voyage", backAtlas:"Retour à l’atlas", bookEnd:"Fin de ce voyage", memoriesCopy:"Décrivez un élément visible —comme un coucher de soleil, un palmier ou une cascade— ou filtrez par destination.", searchPlaceholder:"Chercher : coucher de soleil, palmier, neige, cascade…" });
+Object.assign(ui.es, {
+  gateEyebrow:"ATLAS DE VIAJES · DEMOSTRACIÓN",
+  gateCopy:"Introduce el código de demostración para recorrer viajes y etapas vividas en distintas ciudades. Todos los datos son ficticios.",
+  heroTitle:"Tu historia también se mide en lugares.",
+  heroCopy:"Rumbo reúne fotos dispersas y las ordena por viaje, ciudad y etapa de vida. Así puedes volver a cada lugar y compartirlo con quienes formaron parte del camino.",
+  originTitle:"Una vida puede pasar por muchas ciudades y seguir contando una sola historia.",
+  originCopy:"Quienes viajan, emigran o han vivido en distintas ciudades acumulan fotografías y relatos en teléfonos, chats y nubes personales. Rumbo los reúne en un atlas privado para conservar cada etapa y compartirla con compañeros de viaje, amistades o familiares, estén donde estén.",
+  originPromiseTitle:"Recuerdos con lugar y contexto",
+  originPromiseCopy:"Cada aporte queda unido a una ciudad, un viaje y las personas con quienes quieres compartirlo.",
+  contribEyebrow:"UNA SOLA BANDEJA PARA TODO EL VIAJE",
+  contribCopy:"Tú y las personas que viajaron contigo envían sus fotos a una bandeja común. Quien organiza el álbum revisa cada aporte, lo asigna al lugar correcto y lo publica sin perseguir archivos por varios chats.",
+  flowSend:"El grupo aporta",
+  memoriesCopy:"Filtra por destino o describe algo que recuerdes de la imagen. Marca tus favoritos para crear una cápsula.",
+  capsuleEyebrow:"UNA HISTORIA LISTA PARA COMPARTIR",
+  fromFamily:"Una pequeña historia compartida desde otro lugar",
+  photoRules:"JPG, PNG, WebP, HEIC o HEIF · máximo 5 MB",
+  noPhotoSelected:"Ningún archivo seleccionado",
+  readyToSend:"lista para enviar",
+  heifWillConvert:"se convertirá a JPG al enviar",
+  convertingHeif:"Preparando la foto HEIF…",
+  heifError:"No pudimos convertir esta foto HEIF. Prueba otra imagen o expórtala como JPG."
+});
+Object.assign(ui.fr, {
+  gateEyebrow:"ATLAS DE VOYAGES · DÉMONSTRATION",
+  gateCopy:"Entrez le code de démonstration pour parcourir des voyages et des étapes vécues dans plusieurs villes. Toutes les données sont fictives.",
+  heroTitle:"Votre histoire se mesure aussi en lieux.",
+  heroCopy:"Rumbo rassemble les photos dispersées et les classe par voyage, ville et étape de vie. Vous pouvez ainsi revenir à chaque lieu et le partager avec les personnes qui ont fait partie du parcours.",
+  originTitle:"Une vie peut passer par plusieurs villes tout en racontant une seule histoire.",
+  originCopy:"Les personnes qui voyagent, émigrent ou ont vécu dans plusieurs villes accumulent photos et récits dans des téléphones, des discussions et des espaces personnels. Rumbo les rassemble dans un atlas privé à partager avec compagnons de voyage, amis ou famille.",
+  originPromiseTitle:"Des souvenirs avec un lieu et un contexte",
+  originPromiseCopy:"Chaque contribution reste liée à une ville, un voyage et aux personnes avec qui vous souhaitez la partager.",
+  contribEyebrow:"UNE SEULE BOÎTE POUR TOUT LE VOYAGE",
+  contribCopy:"Vous et vos compagnons de voyage envoyez vos photos dans une boîte commune. La personne qui organise vérifie chaque contribution, l’associe au bon lieu et la publie sans chercher dans plusieurs discussions.",
+  flowSend:"Le groupe contribue",
+  memoriesCopy:"Filtrez par destination ou décrivez un élément de l’image. Ajoutez vos favoris pour créer une capsule.",
+  capsuleEyebrow:"UNE HISTOIRE PRÊTE À PARTAGER",
+  fromFamily:"Une petite histoire partagée depuis un autre lieu",
+  photoRules:"JPG, PNG, WebP, HEIC ou HEIF · 5 Mo maximum",
+  noPhotoSelected:"Aucun fichier sélectionné",
+  readyToSend:"prête à envoyer",
+  heifWillConvert:"sera convertie en JPG lors de l’envoi",
+  convertingHeif:"Préparation de la photo HEIF…",
+  heifError:"Impossible de convertir cette photo HEIF. Essayez une autre image ou exportez-la en JPG."
+});
 
 let lang = localStorage.getItem("rumbo-lang") || "es";
 let filter = "all";
@@ -71,7 +115,7 @@ function setLanguage(next) {
   $$('[data-i18n-placeholder]').forEach(el => el.placeholder = t(el.dataset.i18nPlaceholder));
   $$('.language').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
   $('#lock-button').setAttribute('aria-label', t('closeSession'));
-  renderFilters(); renderAtlas(document.querySelector('.globe-destination.active')?.dataset.trip || currentPhotobookTripId || 'costa-rica'); renderContributions(); renderMemories(); renderCapsule();
+  renderFilters(); renderAtlas(document.querySelector('.globe-destination.active')?.dataset.trip || currentPhotobookTripId || 'costa-rica'); renderContributions(); renderMemories(); renderCapsule(); updatePhotoSelection();
   if (currentPhotobookTripId) renderPhotobook(currentPhotobookTripId);
 }
 
@@ -371,6 +415,76 @@ async function setLiveContributionStatus(id, status) {
   if (status === 'accepted') toast(t('accepted'));
 }
 
+const heifPattern = /\.(?:heic|heif)$/i;
+let heicConverterPromise;
+
+function isHeif(file) {
+  return Boolean(file && (['image/heic','image/heif'].includes(String(file.type).toLowerCase()) || heifPattern.test(file.name)));
+}
+
+function formatFileSize(bytes) {
+  return bytes < 1024 * 1024 ? `${Math.ceil(bytes / 1024)} KB` : `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+
+function updatePhotoSelection() {
+  const input = $('#photo-input');
+  if (!input) return;
+  const file = input.files?.[0];
+  const picker = input.closest('.file-picker');
+  const selection = $('#file-selection');
+  picker.classList.toggle('has-file', Boolean(file));
+  selection.textContent = file ? `${file.name} · ${formatFileSize(file.size)} · ${isHeif(file) ? t('heifWillConvert') : t('readyToSend')}` : t('noPhotoSelected');
+}
+
+function loadHeicConverter() {
+  if (window.heic2any) return Promise.resolve(window.heic2any);
+  if (!heicConverterPromise) {
+    heicConverterPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/heic2any/0.0.4/heic2any.min.js';
+      script.integrity = 'sha512-VjmsArkf8Vv2yyvbXCyVxp+R3n4N2WyS1GEQ+YQxa7Hu0tx836WpY4nW9/T1W5JBmvuIsxkVH/DlHgp7NEMjDw==';
+      script.crossOrigin = 'anonymous';
+      script.referrerPolicy = 'no-referrer';
+      script.onload = () => window.heic2any ? resolve(window.heic2any) : reject(new Error('heif'));
+      script.onerror = () => reject(new Error('heif'));
+      document.head.appendChild(script);
+    });
+  }
+  return heicConverterPromise;
+}
+
+async function jpegFromBitmap(blob) {
+  const bitmap = await createImageBitmap(blob);
+  const scale = Math.min(1, 2560 / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+  canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+  canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close?.();
+  return new Promise((resolve, reject) => canvas.toBlob(result => result ? resolve(result) : reject(new Error('heif')), 'image/jpeg', .86));
+}
+
+async function convertHeif(file) {
+  try { return await jpegFromBitmap(file); } catch {}
+  const converter = await loadHeicConverter();
+  const result = await converter({blob:file, toType:'image/jpeg', quality:.86});
+  const jpeg = Array.isArray(result) ? result[0] : result;
+  try { return await jpegFromBitmap(jpeg); } catch { return jpeg; }
+}
+
+async function contributionFormData(form, status) {
+  const data = new FormData(form);
+  const photo = data.get('photo');
+  if (!(photo instanceof File) || !isHeif(photo)) return data;
+  status.textContent = t('convertingHeif');
+  try {
+    const converted = await convertHeif(photo);
+    const name = photo.name.replace(heifPattern, '') || 'rumbo-photo';
+    data.set('photo', new File([converted], `${name}.jpg`, {type:'image/jpeg', lastModified:Date.now()}));
+  } catch { throw new Error('heif'); }
+  return data;
+}
+
 async function submitContribution(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -378,13 +492,13 @@ async function submitContribution(event) {
   const button = form.querySelector('button[type="submit"]');
   status.classList.remove('error'); status.textContent = t('uploading'); button.disabled = true;
   try {
-    const response = await fetch('/api/contributions', {method:'POST', body:new FormData(form)});
+    const response = await fetch('/api/contributions', {method:'POST', body:await contributionFormData(form, status)});
     const data = await response.json().catch(()=>({}));
     if (!response.ok) throw new Error(data.error || 'upload');
-    form.reset(); status.textContent = t('sentForReview');
+    form.reset(); updatePhotoSelection(); status.textContent = t('sentForReview');
     await loadLiveContributions(isAdmin);
-  } catch {
-    status.classList.add('error'); status.textContent = t('uploadError');
+  } catch (error) {
+    status.classList.add('error'); status.textContent = error?.message === 'heif' ? t('heifError') : t('uploadError');
   } finally { button.disabled = false; }
 }
 
@@ -486,6 +600,7 @@ $('#favorites-shortcut').addEventListener('click',()=>document.querySelector('#c
 $('#clear-favorites').addEventListener('click',()=>{ favorites.clear(); localStorage.setItem('rumbo-favorites','[]'); renderMemories(); renderCapsule(); $('#share-result').hidden=true; });
 $('#reset-contributions').addEventListener('click',()=>{ contributionState={}; localStorage.removeItem('rumbo-contributions'); renderContributions(); renderMemories(); renderCapsule(); });
 $('#contribution-form').addEventListener('submit',submitContribution);
+$('#photo-input').addEventListener('change',updatePhotoSelection);
 $('#admin-open').addEventListener('click',()=>{ $('#admin-form').hidden=false; $('#admin-code').focus(); });
 $('#admin-form').addEventListener('submit',authenticateAdmin);
 $('#admin-exit').addEventListener('click',exitAdmin);
