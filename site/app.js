@@ -6,18 +6,18 @@ const trips = [
 ];
 
 const memories = [
-  ["bcn-1","barcelona","La bajada dorada","La descente dorée","Una caminata sin prisa antes de cenar.","Une promenade sans hâte avant le dîner.","atardecer calle familia","./assets/barcelona.jpg"],
-  ["bcn-2","barcelona","La ciudad a nuestros pies","La ville à nos pieds","El momento en que todos guardamos silencio.","Le moment où nous sommes tous restés silencieux.","vista ciudad arquitectura","./assets/barcelona-2.jpg"],
-  ["bcn-3","barcelona","Camino al parque","En route vers le parc","La mejor ruta fue la que no estaba planeada.","Le meilleur chemin n'était pas prévu.","parque paseo aventura","./assets/barcelona-3.jpg"],
-  ["que-1","quebec","Huellas en la nieve","Traces dans la neige","Seguimos el sendero hasta encontrar la cabaña.","Nous avons suivi le sentier jusqu'à la cabane.","nieve sendero invierno","./assets/quebec.jpg"],
-  ["que-2","quebec","El lago helado","Le lac gelé","Una pausa frente al paisaje más silencioso.","Une pause devant le paysage le plus silencieux.","lago montaña nieve","./assets/quebec-2.jpg"],
-  ["que-3","quebec","Regreso a la cabaña","Retour à la cabane","Guantes mojados y chocolate caliente esperándonos.","Gants mouillés et chocolat chaud nous attendaient.","cabaña bosque chocolate","./assets/quebec-3.jpg"],
-  ["cr-1","costa-rica","Sobre el bosque","Au-dessus de la forêt","Cruzamos juntos aunque alguno miró poco hacia abajo.","Nous avons traversé ensemble, même si certains ont peu regardé en bas.","puente selva familia","./assets/costa-rica.jpg"],
-  ["cr-2","costa-rica","La cascada escondida","La cascade cachée","La escuchamos antes de verla.","Nous l'avons entendue avant de la voir.","cascada agua bosque","./assets/costa-rica-2.jpg"],
-  ["cr-3","costa-rica","Después de la lluvia","Après la pluie","Todo olía a tierra y hojas nuevas.","Tout sentait la terre et les feuilles neuves.","lluvia hojas naturaleza","./assets/costa-rica-3.jpg"],
-  ["kyo-1","kyoto","Pétalos en el camino","Pétales sur le chemin","La primavera nos acompañó durante todo el paseo.","Le printemps nous a accompagnés pendant toute la promenade.","primavera flores camino","./assets/kyoto.jpg"],
-  ["kyo-2","kyoto","La mañana quieta","Le matin tranquille","Llegamos antes que la ciudad despertara.","Nous sommes arrivés avant le réveil de la ville.","mañana templo calma","./assets/kyoto-2.jpg"],
-  ["kyo-3","kyoto","Bajo los cerezos","Sous les cerisiers","Elegimos este instante para recordar el viaje.","Nous avons choisi cet instant pour nous souvenir du voyage.","cerezos familia flores","./assets/kyoto-3.jpg"],
+  ["bcn-1","barcelona","La bajada dorada","La descente dorée","Una caminata sin prisa antes de cenar.","Une promenade sans hâte avant le dîner.","familia niños abuelo madre calle piedra ciudad arquitectura parque güell mosaico palmera palmeras flores mar vista atardecer sol paseo famille enfants grand-père mère rue pierre ville coucher soleil mer palmier palmiers fleurs promenade","./assets/barcelona.jpg"],
+  ["bcn-2","barcelona","La ciudad a nuestros pies","La ville à nos pieds","El momento en que todos guardamos silencio.","Le moment où nous sommes tous restés silencieux.","familia niños abuelo madre ciudad panorama mirador sagrada familia basílica arquitectura horizonte mar montaña atardecer sol famille enfants grand-père mère ville panorama belvédère basilique architecture mer montagne coucher soleil","./assets/barcelona-2.jpg"],
+  ["bcn-3","barcelona","Camino al parque","En route vers le parc","La mejor ruta fue la que no estaba planeada.","Le meilleur chemin n'était pas prévu.","familia niños abuelo madre parque güell mosaico trencadís palmera palmeras jardín plantas piedra sendero arco paseo famille enfants grand-père mère parc mosaïque palmier palmiers jardin plantes pierre sentier arche promenade","./assets/barcelona-3.jpg"],
+  ["que-1","quebec","Huellas en la nieve","Traces dans la neige","Seguimos el sendero hasta encontrar la cabaña.","Nous avons suivi le sentier jusqu'à la cabane.","familia niños nieve invierno bosque pinos lago cabaña montaña sendero sol mochilas famille enfants neige hiver forêt sapins lac chalet montagne sentier soleil sacs dos","./assets/quebec.jpg"],
+  ["que-2","quebec","El lago helado","Le lac gelé","Una pausa frente al paisaje más silencioso.","Une pause devant le paysage le plus silencieux.","familia niños nieve invierno lago helado hielo montañas bosque pinos atardecer sol famille enfants neige hiver lac gelé glace montagnes forêt sapins coucher soleil","./assets/quebec-2.jpg"],
+  ["que-3","quebec","Regreso a la cabaña","Retour à la cabane","Guantes mojados y chocolate caliente esperándonos.","Gants mouillés et chocolat chaud nous attendaient.","familia niños nieve invierno cabaña madera bosque montaña anochecer luces cálidas chocolate caliente trineo famille enfants neige hiver chalet bois forêt montagne crépuscule lumière chaude chocolat luge","./assets/quebec-3.jpg"],
+  ["cr-1","costa-rica","Sobre el bosque","Au-dessus de la forêt","Cruzamos juntos aunque alguno miró poco hacia abajo.","Nous avons traversé ensemble, même si certains ont peu regardé en bas.","familia niños puente colgante selva bosque tropical cascada agua niebla mochilas senderismo hojas verdes famille enfants pont suspendu jungle forêt tropicale cascade eau brume sacs dos randonnée feuilles vertes","./assets/costa-rica.jpg"],
+  ["cr-2","costa-rica","La cascada escondida","La cascade cachée","La escuchamos antes de verla.","Nous l'avons entendue avant de la voir.","familia niños cascada agua selva bosque tropical mirador baranda sendero lluvia niebla rocas famille enfants cascade eau jungle forêt tropicale belvédère rambarde sentier pluie brume rochers","./assets/costa-rica-2.jpg"],
+  ["cr-3","costa-rica","Después de la lluvia","Après la pluie","Todo olía a tierra y hojas nuevas.","Tout sentait la terre et les feuilles neuves.","familia niños selva bosque tropical lluvia hojas gigantes plantas verdes naturaleza senderismo mochilas botas famille enfants jungle forêt tropicale pluie feuilles géantes plantes vertes nature randonnée sacs dos bottes","./assets/costa-rica-3.jpg"],
+  ["kyo-1","kyoto","Pétalos en el camino","Pétales sur le chemin","La primavera nos acompañó durante todo el paseo.","Le printemps nous a accompagnés pendant toute la promenade.","familia niños abuelo madre cerezos flores rosas pétalos primavera calle casas tradicionales pagoda arquitectura famille enfants grand-père mère cerisiers fleurs roses pétales printemps rue maisons traditionnelles pagode architecture","./assets/kyoto.jpg"],
+  ["kyo-2","kyoto","La mañana quieta","Le matin tranquille","Llegamos antes que la ciudad despertara.","Nous sommes arrivés avant le réveil de la ville.","familia niños abuelo madre templo cerezos flores rosas primavera linternas piedra escaleras arquitectura sol famille enfants grand-père mère temple cerisiers fleurs roses printemps lanternes pierre escaliers architecture soleil","./assets/kyoto-2.jpg"],
+  ["kyo-3","kyoto","Bajo los cerezos","Sous les cerisiers","Elegimos este instante para recordar el viaje.","Nous avons choisi cet instant pour nous souvenir du voyage.","familia niños abuelo madre canal agua puente cerezos flores rosas pétalos primavera casas tradicionales reflejo famille enfants grand-père mère canal eau pont cerisiers fleurs roses pétales printemps maisons traditionnelles reflet","./assets/kyoto-3.jpg"],
 ].map((m, index) => {
   const trip = trips.find(t => t.id === m[1]);
   return { id:m[0], tripId:m[1], title:{es:m[2],fr:m[3]}, caption:{es:m[4],fr:m[5]}, tags:m[6], image:m[7] || trip.image, place:trip.place, year:trip.year, index };
@@ -38,12 +38,29 @@ const ui = {
   fr: { gateEyebrow:"ATLAS FAMILIAL · DÉMONSTRATION", gateTitle:"Les souvenirs méritent un lieu où revenir.", gateCopy:"Entrez le code de démonstration pour découvrir une famille et des voyages entièrement fictifs.", codeLabel:"Code d'accès", enter:"Entrer", demoCode:"Code d'essai :", navAtlas:"Atlas", navContributions:"Contributions", navMemories:"Souvenirs", navCapsule:"Capsule", heroEyebrow:"UN FOYER POUR CHAQUE AVENTURE", heroTitle:"Notre histoire se mesure aussi en lieux.", heroCopy:"Rumbo rassemble les photos dispersées, les organise par voyage et les transforme en petites histoires que la famille peut revivre depuis n'importe quel pays.", explore:"Explorer l'atlas", createCapsule:"Créer une capsule", trips:"voyages", memories:"souvenirs", continents:"continents", atlasEyebrow:"LA CARTE DES SOUVENIRS", atlasTitle:"Quatre voyages, une histoire partagée.", atlasCopy:"Choisissez un point pour découvrir le voyage et accéder directement à ses souvenirs.", globeTitle:"Globe des souvenirs", globeHelp:"Faites glisser pour tourner · choisissez une destination", contribEyebrow:"UNE SEULE BOÎTE POUR TOUTE LA FAMILLE", contribTitle:"Chaque téléphone garde une partie du voyage.", contribCopy:"Les proches envoient leurs photos dans une boîte commune. La personne qui organise vérifie chaque contribution, l associe au bon voyage et la publie sans chercher des fichiers dans plusieurs discussions.", flowSend:"La famille contribue", flowSendCopy:"depuis différents téléphones", flowReview:"On vérifie", flowReviewCopy:"avant de publier", flowAlbum:"L album grandit", flowAlbumCopy:"classé et partageable", sharedInbox:"BOÎTE PARTAGÉE", pending:"contributions en attente", demo:"Démo", integrated:"intégrées à l album", resetDemo:"Réinitialiser", accept:"Intégrer", dismiss:"Ignorer", accepted:"Intégrée", dismissed:"Ignorée", memoriesEyebrow:"CHERCHER · SE SOUVENIR · PARTAGER", memoriesTitle:"Retrouvez un moment, pas un dossier.", memoriesCopy:"Filtrez par destination ou saisissez un mot. Ajoutez vos favoris pour créer une capsule familiale.", searchLabel:"Chercher des souvenirs", searchPlaceholder:"Chercher : neige, pont, printemps…", favorites:"Favoris", results:"souvenirs trouvés", emptyTitle:"Ce souvenir n'apparaît pas encore.", emptyCopy:"Essayez un autre mot ou retirez les filtres.", capsuleEyebrow:"LA FONCTION QUI RAPPROCHE LA FAMILLE", capsuleTitle:"Créez une capsule pour quelqu'un qui est loin.", capsuleCopy:"Choisissez jusqu'à six souvenirs, écrivez un message et générez un lien léger. La personne qui le reçoit verra une histoire courte sans fouiller des centaines de fichiers.", stepOne:"Marquez les souvenirs avec le cœur.", stepTwo:"Ajoutez un message personnel.", stepThree:"Générez et copiez le lien.", yourSelection:"VOTRE SÉLECTION", selected:"souvenirs", clear:"Vider", selectionEmpty:"Vous n'avez pas encore marqué de souvenirs.", messageLabel:"Dédicace", messagePlaceholder:"Mamie, nous avons choisi ces moments pour que tu voyages avec nous…", generateLink:"Générer le lien", shareReady:"Lien prêt à partager", copy:"Copier", preview:"Voir la capsule", continueSite:"Continuer vers Rumbo", footer:"Prototype de concours · Tous les noms, images et données sont fictifs.", backTop:"Retour en haut ↑", all:"Tous", view:"Voir les souvenirs →", add:"Ajouter à la capsule", remove:"Retirer de la capsule", wrong:"Le code ne correspond pas. Essayez VIAJE.", max:"La capsule accepte au maximum six souvenirs.", choose:"Marquez au moins un souvenir pour créer la capsule.", copied:"Lien copié.", capsuleFor:"Une capsule pour vous", fromFamily:"Une petite histoire partagée par la famille", closeSession:"Fermer la session", sendMemoryEyebrow:"AJOUTER UN SOUVENIR", sendMemoryTitle:"Ajoutez une photo depuis votre téléphone", yourName:"Votre nom", chooseTrip:"Voyage", memoryNote:"Que voulez-vous retenir ?", memoryNotePlaceholder:"Une courte phrase sur ce moment", choosePhoto:"Choisir une photo", photoRules:"JPG, PNG ou WebP · 5 Mo maximum", demoConsent:"Je confirme que cette démonstration utilise des images fictives ou autorisées.", sendForReview:"Envoyer pour vérification", realUploads:"En direct", familyUploads:"Contributions reçues", loadingUploads:"Chargement…", noUploads:"Aucune contribution réelle pour le moment.", sentForReview:"Photo envoyée. Elle se trouve dans la boîte de vérification.", uploadError:"Impossible de téléverser la photo. Vérifiez le format et réessayez.", uploading:"Téléversement…" }
 };
 
+Object.assign(ui.es, {
+  originEyebrow:"POR QUÉ EXISTE RUMBO",
+  originTitle:"Una familia puede vivir en muchos países y seguir compartiendo una sola historia.",
+  originCopy:"Muchas familias viven repartidas entre ciudades y países. Sus fotografías, videos y relatos quedan separados entre teléfonos, chats y nubes personales. Rumbo los reúne en un atlas familiar privado para que hijos, abuelos, hermanos y amigos cercanos puedan conservar y recorrer una historia compartida, aunque vivan lejos.",
+  originPromiseTitle:"Recuerdos que viajan con la familia",
+  originPromiseCopy:"Cada aporte encuentra su lugar, su contexto y las personas con quienes merece ser compartido."
+});
+Object.assign(ui.fr, {
+  originEyebrow:"POURQUOI RUMBO EXISTE",
+  originTitle:"Une famille peut vivre dans plusieurs pays tout en partageant une seule histoire.",
+  originCopy:"De nombreuses familles vivent réparties entre plusieurs villes et pays. Leurs photos, vidéos et récits restent séparés entre téléphones, discussions et espaces personnels. Rumbo les rassemble dans un atlas familial privé afin que les enfants, grands-parents, frères, sœurs et proches puissent préserver et parcourir une histoire commune, même à distance.",
+  originPromiseTitle:"Des souvenirs qui voyagent avec la famille",
+  originPromiseCopy:"Chaque contribution retrouve sa place, son contexte et les personnes avec qui elle mérite d'être partagée."
+});
 Object.assign(ui.es, { awaitingReview:"Pendiente", organizerMode:"Modo organizador", organizerActive:"Organizador activo", exitOrganizer:"Salir del modo organizador", organizerCode:"Código del organizador", openInbox:"Abrir bandeja", wrongOrganizer:"El código del organizador no coincide." });
 Object.assign(ui.fr, { awaitingReview:"En attente", organizerMode:"Mode organisateur", organizerActive:"Organisateur actif", exitOrganizer:"Quitter le mode organisateur", organizerCode:"Code de l'organisateur", openInbox:"Ouvrir la boîte", wrongOrganizer:"Le code de l'organisateur ne correspond pas." });
+Object.assign(ui.es, { photobook:"PHOTOBOOK DEL VIAJE", bookMemories:"recuerdos de este viaje", backAtlas:"Volver al atlas", bookEnd:"Fin de este viaje", memoriesCopy:"Escribe algo que recuerdes de la imagen —como atardecer, palmeras o cascada— o filtra por destino.", searchPlaceholder:"Buscar: atardecer, palmeras, nieve, cascada…" });
+Object.assign(ui.fr, { photobook:"ALBUM DU VOYAGE", bookMemories:"souvenirs de ce voyage", backAtlas:"Retour à l’atlas", bookEnd:"Fin de ce voyage", memoriesCopy:"Décrivez un élément visible —comme un coucher de soleil, un palmier ou une cascade— ou filtrez par destination.", searchPlaceholder:"Chercher : coucher de soleil, palmier, neige, cascade…" });
 
 let lang = localStorage.getItem("rumbo-lang") || "es";
 let filter = "all";
 let favorites = new Set(JSON.parse(localStorage.getItem("rumbo-favorites") || "[]"));
+let currentPhotobookTripId = null;
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const t = key => ui[lang][key] || key;
@@ -54,7 +71,8 @@ function setLanguage(next) {
   $$('[data-i18n-placeholder]').forEach(el => el.placeholder = t(el.dataset.i18nPlaceholder));
   $$('.language').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
   $('#lock-button').setAttribute('aria-label', t('closeSession'));
-  renderFilters(); renderAtlas(document.querySelector('.globe-destination.active')?.dataset.trip || 'costa-rica'); renderContributions(); renderMemories(); renderCapsule();
+  renderFilters(); renderAtlas(document.querySelector('.globe-destination.active')?.dataset.trip || currentPhotobookTripId || 'costa-rica'); renderContributions(); renderMemories(); renderCapsule();
+  if (currentPhotobookTripId) renderPhotobook(currentPhotobookTripId);
 }
 
 function renderFilters() {
@@ -66,8 +84,71 @@ function renderAtlas(id='costa-rica') {
   const trip = trips.find(t => t.id === id) || trips[0];
   $$('.globe-destination').forEach(p => p.classList.toggle('active', p.dataset.trip === trip.id));
   focusGlobeTrip(trip.id);
-  $('#atlas-detail').innerHTML = `<img src="${trip.image}" alt="${trip.place}"><div><small>${trip.country} · ${trip.year}</small><h3>${trip.place}</h3><p>${trip.blurb[lang]}</p><a href="#recuerdos" data-atlas-filter="${trip.id}">${t('view')}</a></div>`;
-  $('[data-atlas-filter]').addEventListener('click', () => { filter=trip.id; renderFilters(); renderMemories(); });
+  $('#atlas-detail').innerHTML = `<img src="${trip.image}" alt="${trip.place}"><div><small>${trip.country} · ${trip.year}</small><h3>${trip.place}</h3><p>${trip.blurb[lang]}</p><a href="#photobook=${trip.id}" data-open-photobook="${trip.id}">${t('view')}</a></div>`;
+  $('[data-open-photobook]').addEventListener('click', event => { event.preventDefault(); openPhotobook(trip.id); });
+}
+
+function renderPhotobook(id) {
+  const trip = trips.find(item => item.id === id);
+  if (!trip) return;
+  const tripMemories = allMemories().filter(memory => memory.tripId === id);
+  $('#photobook-view').innerHTML = `
+    <article class="photobook" aria-labelledby="photobook-title">
+      <header class="photobook-cover">
+        <img src="${trip.image}" alt="${trip.place}">
+        <div class="photobook-cover-copy">
+          <a class="photobook-brand" href="#atlas" data-close-photobook aria-label="Rumbo, ${t('backAtlas')}"><span class="brand-mark">R</span><span>rumbo</span></a>
+          <div>
+            <small>${trip.country} · ${trip.year}</small>
+            <p class="photobook-kicker">${t('photobook')}</p>
+            <h1 id="photobook-title">${trip.place}</h1>
+            <p>${trip.blurb[lang]}</p>
+            <span class="photobook-count">${tripMemories.length} ${t('bookMemories')}</span>
+          </div>
+        </div>
+      </header>
+      <main class="photobook-pages">
+        ${tripMemories.map((memory, index) => `
+          <figure class="photobook-spread ${index % 2 ? 'photobook-spread-reverse' : ''}">
+            <div class="photobook-photo"><img src="${memory.image}" alt="${memory.title[lang]}" ${index ? 'loading="lazy"' : ''}></div>
+            <figcaption>
+              <span>${String(index + 1).padStart(2, '0')} · ${trip.place}</span>
+              <h2>${memory.title[lang]}</h2>
+              <p>${memory.caption[lang]}</p>
+            </figcaption>
+          </figure>`).join('')}
+      </main>
+      <footer class="photobook-end">
+        <small>${t('bookEnd')}</small>
+        <a href="#atlas" data-close-photobook>← ${t('backAtlas')}</a>
+      </footer>
+    </article>`;
+  $$('[data-close-photobook]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); closePhotobook(true); }));
+}
+
+function openPhotobook(id, updateHistory=true) {
+  if (!trips.some(trip => trip.id === id) || sessionStorage.getItem('rumbo-unlocked') !== '1') return;
+  currentPhotobookTripId = id;
+  renderPhotobook(id);
+  $('#app').hidden = true;
+  $('#photobook-view').hidden = false;
+  if (updateHistory) history.pushState({photobook:id}, '', `#photobook=${id}`);
+  window.scrollTo(0, 0);
+}
+
+function closePhotobook(updateHistory=false) {
+  if (!currentPhotobookTripId && $('#photobook-view').hidden) return;
+  currentPhotobookTripId = null;
+  $('#photobook-view').hidden = true;
+  $('#app').hidden = false;
+  if (updateHistory) history.replaceState(null, '', '#atlas');
+  requestAnimationFrame(() => document.querySelector('#atlas').scrollIntoView({block:'start'}));
+}
+
+function syncPhotobookRoute() {
+  const match = location.hash.match(/^#photobook=([a-z-]+)$/);
+  if (match && sessionStorage.getItem('rumbo-unlocked') === '1') openPhotobook(match[1], false);
+  else if (!$('#photobook-view').hidden) closePhotobook(false);
 }
 
 const globeDestinations = {
@@ -190,7 +271,8 @@ function drawGlobe() {
 function contributionMemories() {
   return contributions.map((c, index) => {
     const trip = trips.find(t => t.id === c.tripId);
-    return { ...c, place:trip.place, year:trip.year, tags:`aporte ${c.author} ${trip.place}`, index:index+12 };
+    const visualTags = c.tripId === 'barcelona' ? 'familia parque ciudad atardecer palmera mosaico famille parc ville coucher soleil palmier mosaïque' : c.tripId === 'costa-rica' ? 'familia cascada selva bosque tropical agua famille cascade jungle forêt tropicale eau' : 'familia cerezos flores primavera pétalos famille cerisiers fleurs printemps pétales';
+    return { ...c, place:trip.place, year:trip.year, tags:`aporte ${c.author} ${trip.place} ${visualTags}`, index:index+12 };
   });
 }
 
@@ -314,8 +396,13 @@ function setContributionStatus(id, status) {
 }
 
 function visibleMemories() {
-  const q = $('#search').value.trim().toLowerCase();
-  return allMemories().filter(m => (filter==='all' || m.tripId===filter) && (!q || `${m.title[lang]} ${m.caption[lang]} ${m.tags} ${m.place}`.toLowerCase().includes(q)));
+  const normalizeSearch = value => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const q = normalizeSearch($('#search').value.trim());
+  return allMemories().filter(m => {
+    const trip = trips.find(item => item.id === m.tripId);
+    const searchable = normalizeSearch(`${m.title.es} ${m.title.fr} ${m.caption.es} ${m.caption.fr} ${m.tags} ${m.place} ${m.year} ${trip?.country || ''}`);
+    return (filter==='all' || m.tripId===filter) && (!q || searchable.includes(q));
+  });
 }
 
 function renderMemories() {
@@ -386,7 +473,8 @@ function unlock(scrollToStory=false) {
   sessionStorage.setItem('rumbo-unlocked','1');
   loadLiveContributions(isAdmin);
   window.scrollTo(0,0);
-  if(scrollToStory) requestAnimationFrame(()=>document.querySelector('#inicio h1').scrollIntoView({behavior:'smooth',block:'center'}));
+  if(location.hash.startsWith('#photobook=')) syncPhotobookRoute();
+  else if(scrollToStory) requestAnimationFrame(()=>document.querySelector('#inicio h1').scrollIntoView({behavior:'smooth',block:'center'}));
 }
 $('#gate-form').addEventListener('submit', e => { e.preventDefault(); if($('#access-code').value.trim().toUpperCase()==='VIAJE') { $('#gate-error').textContent=''; unlock(true); } else $('#gate-error').textContent=t('wrong'); });
 $('#fill-code').addEventListener('click',()=>{ $('#access-code').value='VIAJE'; $('#access-code').focus(); });
@@ -407,6 +495,7 @@ $('#preview-capsule').addEventListener('click',()=>previewCapsule(capsulePayload
 $('#copy-link').addEventListener('click',()=>copyCapsuleLink($('#share-url').value));
 $$('[data-close]').forEach(b=>b.addEventListener('click',()=>{ const d=b.closest('dialog'); if(d.id==='capsule-modal'&&d.dataset.recipient==='true') continueFromCapsule(); else d.close(); }));
 $$('dialog').forEach(d=>d.addEventListener('click',e=>{ if(e.target===d) { if(d.id==='capsule-modal'&&d.dataset.recipient==='true') continueFromCapsule(); else d.close(); } }));
+window.addEventListener('popstate', syncPhotobookRoute);
 
 initGlobe();
 setLanguage(lang);
